@@ -19,16 +19,10 @@ class MyCanvas extends JPanel {
 
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-//        Shape l = new Line2D.Double();
-//        g2.draw(l);
         if (!line.isEmpty()) {
             g.setColor(Color.BLACK);
             for (int j = 0; j < line.size(); j++) {
                 for (int i = 0; i < line.get(j).size() - 1; i++) {
-//                    g.drawLine(line.get(j).get(i).get(0),
-//                            line.get(j).get(i).get(1),
-//                            line.get(j).get(i+1).get(0),
-//                            line.get(j).get(i+1).get(1));
                     Shape l = new Line2D.Double(line.get(j).get(i).get(0),
                             line.get(j).get(i).get(1),
                             line.get(j).get(i+1).get(0),
@@ -48,8 +42,6 @@ class MyCanvas extends JPanel {
                 Shape l1 = new Line2D.Double(pLat - 5, pLon, pLat + 5, pLon);
                 Shape l2 = new Line2D.Double(pLat, pLon - 5, pLat, pLon + 5);
                 g2.draw(l1); g2.draw(l2);
-                // g.drawLine(pLat - 5, pLon, pLat + 5, pLon);
-                // g.drawLine(pLat, pLon - 5, pLat, pLon + 5);
             }
         }
     }
@@ -76,7 +68,6 @@ class Json {
                     .getAsJsonObject()
                     .get("sovereignt")
                     .getAsString();
-            // System.out.println(name);
             if (Objects.equals(name, searchName)) {
                 return j;
             }
@@ -104,8 +95,6 @@ class mapConvert {
         latRad = lat * Math.PI/180;
         y = Math.log(Math.tan((Math.PI/4) + (latRad/2)));
         y = ((double) mapH /2) - (mapW * y / (2 * Math.PI));
-//        intX = (int)Math.round(x);
-//        intY = (int)Math.round(y);
         pair.add(x); pair.add(y);
         return pair;
     }
@@ -169,7 +158,6 @@ public class Main extends Canvas {
                 canvas.line.add(coordinates);
                 coordinates = new ArrayList<>();
             }
-//            canvas.line.add(coordinates);
         }
         plotButton.addActionListener(e -> {
             double tfLat, tfLon;
@@ -181,9 +169,6 @@ public class Main extends Canvas {
             f.revalidate();
             f.repaint();
         });
-
-        //System.out.println(geoData.findCountryIndex("China"));
-        // System.out.println(coordinates);
 
         c.setLayout(new BoxLayout(c, BoxLayout.PAGE_AXIS));
         f.add(latTextField);
